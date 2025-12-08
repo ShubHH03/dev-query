@@ -61,23 +61,24 @@ export default async function createQuestionCollection() {
   console.log("Question Attributes created");
 
   // create indexes
-  await Promise.all([
-    tablesDB.createIndex({
-      databaseId: db,
-      tableId: questionCollection,
-      key: "title",
-      type: IndexType.Fulltext,
-      columns: ["title"],
-      orders: ["asc"],
-    }),
+  // await Promise.all([
+  //   tablesDB.createIndex({
+  //     databaseId: db,
+  //     tableId: questionCollection,
+  //     key: "title",
+  //     type: IndexType.Fulltext,
+  //     columns: ["title"],
+  //     orders: ["asc"],
+  //   }),
 
-    tablesDB.createIndex({
-      databaseId: db,
-      tableId: questionCollection,
-      key: "content",
-      type: IndexType.Fulltext,
-      columns: ["content"],
-      orders: ["asc"],
-    }),
-  ]);
+  //   tablesDB.createIndex({
+  //     databaseId: db,
+  //     tableId: questionCollection,
+  //     key: "content",
+  //     type: IndexType.Fulltext,
+  //     columns: ["content"],
+  //     orders: ["asc"],
+  //   }),
+  // ]);
+  // console.log("Question Indexes created");
 }
