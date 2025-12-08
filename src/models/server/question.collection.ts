@@ -19,7 +19,7 @@ export default async function createQuestionCollection() {
   });
   console.log("Question collection created");
 
-  // creating attributes
+  // create attributes
   await Promise.all([
     tablesDB.createStringColumn({
       databaseId: db,
@@ -60,7 +60,7 @@ export default async function createQuestionCollection() {
   ]);
   console.log("Question Attributes created");
 
-  //creating indexes
+  // create indexes
   await Promise.all([
     tablesDB.createIndex({
       databaseId: db,
@@ -79,6 +79,5 @@ export default async function createQuestionCollection() {
       columns: ["content"],
       orders: ["asc"],
     }),
-
   ]);
 }
