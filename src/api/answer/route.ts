@@ -33,7 +33,47 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     return NextResponse.json(
       {
-        error: error?.message || "Error creating answer",
+        message: error?.message || "Error creating answer",
+      },
+      { status: error?.status || error?.code || 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const { answerId } = await request.json();
+
+    const answer = await tablesDB.getRow({
+      databaseId: db,
+      tableId: answerCollection,
+      rowId: answerId,
+    });
+
+    const response = await tablesDB.deleteRow({
+      databaseId: db,
+      tableId: answerCollection,
+      rowId: answerId,
+    });
+
+    // decrease author reputation
+    const prefs = await users.getPrefs<UserPrefs>(answer.authorId);
+    await users.updatePrefs({
+      userId: answer.authorId,
+      prefs: { reputation: Number(prefs.reputation) - 1 },
+    });
+    return NextResponse.json(
+      {
+        data: response,
+      },
+      {
+        status: 200,
+      }
+    );
+  } catch (error: any) {
+    return NextResponse.json(
+      {
+        message: error?.message || "Error deleting answer",
       },
       { status: error?.status || error?.code || 500 }
     );
