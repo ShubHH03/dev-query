@@ -3,9 +3,9 @@ import {
   db,
   questionCollection,
   voteCollection,
-} from "../../models/name";
-import { tablesDB, users } from "../../models/server/config";
-import { UserPrefs } from "../../store/Auth";
+} from "../../../models/name";
+import { tablesDB, users } from "../../../models/server/config";
+import { UserPrefs } from "../../../store/Auth";
 import { NextRequest, NextResponse } from "next/server";
 import { ID, Query } from "node-appwrite";
 

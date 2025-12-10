@@ -1,7 +1,7 @@
 "use client";
 
-import { useAuthStore } from "../store/Auth";
-import {BackgroundBeams} from "../components/ui/background-beams";
+import { useAuthStore } from "../../store/Auth";
+import {BackgroundBeams} from "../../components/ui/background-beams";
     import React from "react";
 import { useRouter } from "next/navigation";
 
